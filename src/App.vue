@@ -5,9 +5,10 @@
     <router-link to="/About" title="" tag="button" replace>about</router-link>
     <router-link :to="'/user/'+userId" title="" tag="button" replace>user</router-link>
     <router-link :to="{path:'/profile',query:{name:'teddy'}}" title="">档案</router-link>
-    <keep-alive>
+    <keep-alive exclude="Profile">
       <router-view></router-view>
     </keep-alive>
+    <!--    排除Profile-->
     <!--代码跳转路由-->
     <button @click="homeclick">home</button>
     <button @click="aboutclick">about</button>

@@ -11,19 +11,19 @@
 <script>
 export default {
   name: "Home",
-  data(){
-    return{
-      path:'/home/news'
+  data() {
+    return {
+      path: '/home/news'
     }
   },
 
-  activated() {
+  activated() {                                              //只有该组件使用了keep-alive才有效
     this.$router.push(this.path)
   },
 
-  beforeRouteLeave(to,from,next){
+  beforeRouteLeave(to, from, next) {
     console.log(this.$route.path)
-    this.path=this.$route.path
+    this.path = this.$route.path
     next()
   }
   // created() {
