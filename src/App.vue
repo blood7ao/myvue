@@ -1,32 +1,48 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
+    <!-- active-class="active"路由也可用统一改   -->
+    <router-link to="/Home" title="" tag="button" replace active-class="active">首页</router-link>
+    <router-link to="/About" title="" tag="button" replace>about</router-link>
+    <router-link :to="'/user/'+userId" title="" tag="button" replace>user</router-link>
+    <router-link :to="{path:'/profile',query:{name:'teddy'}}" title="">档案</router-link>
+    <keep-alive>
+      <router-view></router-view>
+    </keep-alive>
+    <!--代码跳转路由-->
+    <button @click="homeclick">home</button>
+    <button @click="aboutclick">about</button>
   </div>
 </template>
 
+<script>
+export default {
+  name: "App",
+  data() {
+    return {
+      userId: 'teddy'
+    }
+  },
+  methods: {
+    homeclick() {
+      console.log("homeclick")
+      this.$router.replace('/home')
+    },
+
+    aboutclick() {
+      console.log("aboutclick")
+      this.$router.replace('/about')   //router    new的：const router = new VueRouter
+
+    }
+  }
+}
+</script>
+
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+.router-link-active {
+  color: red
 }
 
-#nav {
-  padding: 30px;
-}
-
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-#nav a.router-link-exact-active {
-  color: #42b983;
+.active {
+  color: tomato;
 }
 </style>
